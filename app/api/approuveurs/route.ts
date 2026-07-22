@@ -9,3 +9,4 @@ export async function GET() {
     return NextResponse.json({ error: 'Erreur' }, { status: 500 });
   }
 }
+// Build timestamp: Wed Jul 22 19:58:25 UTC 2026
