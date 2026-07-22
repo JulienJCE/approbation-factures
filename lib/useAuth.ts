@@ -1,14 +1,27 @@
+'use client';
+
 import { useMsal } from '@azure/msal-react';
 import { useEffect, useState } from 'react';
 
+export interface User {
+  name?: string;
+  email?: string;
+  id?: string;
+}
+
 export function useAuth() {
   const { instance, accounts } = useMsal();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (accounts.length > 0) {
-      setUser(accounts[0]);
+    if (accounts && accounts.length > 0) {
+      const account = accounts[0];
+      setUser({
+        name: account.name,
+        email: account.username,
+        id: account.localAccountId,
+      });
     }
     setLoading(false);
   }, [accounts]);
@@ -25,11 +38,17 @@ export function useAuth() {
 
   const logout = async () => {
     try {
-      await instance.logout();
+      await instance.logoutPopup();
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
 
-  return { user, loading, login, logout, isAuthenticated: !!user };
+  return {
+    user,
+    loading,
+    login,
+    logout,
+    isAuthenticated: !!user,
+  };
 }

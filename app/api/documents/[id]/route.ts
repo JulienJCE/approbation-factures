@@ -1,17 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { getDocumentById } from '@/lib/db';
+import { NextResponse } from 'next/server';
 
 export async function GET(
-  request: NextRequest,
+  _request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const doc = await getDocumentById(params.id);
-    if (!doc) {
-      return NextResponse.json({ error: 'Non trouve' }, { status: 404 });
-    }
-    return NextResponse.json(doc);
+    const document = await getDocumentById(params.id);
+    return NextResponse.json(document);
   } catch (error) {
-    return NextResponse.json({ error: 'Erreur' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Document not found' },
+      { status: 404 }
+    );
   }
 }
