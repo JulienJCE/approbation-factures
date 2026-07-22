@@ -37,6 +37,8 @@ export async function applyStamp(
 ): Promise<Buffer> {
   const config = STAMP_CONFIGS[stampType];
   console.log(`Applying ${stampType} stamp to ${pdfPath}`);
+  if (approverName) console.log(`Approver: ${approverName}`);
+  if (timestamp) console.log(`Timestamp: ${timestamp.toISOString()}`);
   console.log(`Config:`, config);
   return Buffer.from('');
 }

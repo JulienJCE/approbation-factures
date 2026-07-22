@@ -88,8 +88,19 @@ export async function getDocumentById(id: string): Promise<Document | null> {
   return rowToDocument(result[0]);
 }
 
-export async function getDocuments(): Promise<Document[]> {
-  const result = await db`SELECT * FROM documents ORDER BY created_at DESC`;
+export async function getDocuments(filters?: { volet?: number; status?: string }): Promise<Document[]> {
+  let result;
+  
+  if (filters?.volet && filters?.status) {
+    result = await db`SELECT * FROM documents WHERE volet = ${filters.volet} AND status = ${filters.status} ORDER BY created_at DESC`;
+  } else if (filters?.volet) {
+    result = await db`SELECT * FROM documents WHERE volet = ${filters.volet} ORDER BY created_at DESC`;
+  } else if (filters?.status) {
+    result = await db`SELECT * FROM documents WHERE status = ${filters.status} ORDER BY created_at DESC`;
+  } else {
+    result = await db`SELECT * FROM documents ORDER BY created_at DESC`;
+  }
+  
   return result.map(rowToDocument);
 }
 
