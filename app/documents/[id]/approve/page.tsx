@@ -10,7 +10,7 @@ export default function ApprovePage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     fetch(`/api/documents/${params.id}`).then(r => r.json()).then(setDoc).finally(() => setLoading(false));
-  }, []);
+  }, [params.id]);
 
   const handleApprove = async (status: 'approved' | 'rejected') => {
     setApproving(true);

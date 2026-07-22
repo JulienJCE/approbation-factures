@@ -62,7 +62,7 @@ export default function Home() {
       <div className="mt-8">
         <div className="card p-6">
           <h3 className="text-lg font-bold text-gray-900 mb-4">Dashboard Comptabilité</h3>
-          <p className="text-gray-600 text-sm mb-4">Vue d'ensemble de toutes les factures et dépenses.</p>
+          <p className="text-gray-600 text-sm mb-4">Vue d&apos;ensemble de toutes les factures et dépenses.</p>
           <Link href="/dashboard" className="btn btn-primary inline-block">
             Ouvrir le Dashboard
           </Link>

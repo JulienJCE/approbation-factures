@@ -42,7 +42,7 @@ export default function Volet2Employe() {
       <div className="card p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium mb-2">Code d'accès Visa</label>
+            <label className="block text-sm font-medium mb-2">Code d&apos;accès Visa</label>
             <input type="text" value={visaCode} onChange={(e) => setVisaCode(e.target.value.toUpperCase())} placeholder="YT-2026" className="w-full px-4 py-2 border border-gray-300 rounded" />
           </div>
 
