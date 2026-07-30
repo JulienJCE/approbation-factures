@@ -5,9 +5,8 @@ export const dynamic = 'force-dynamic';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Suspense } from 'react';
 
-function LoginContent() {
+export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -79,13 +78,5 @@ function LoginContent() {
         </Link>
       </div>
     </div>
-  );
-}
-
-export default function LoginPage() {
-  return (
-    <Suspense fallback={<div>Chargement...</div>}>
-      <LoginContent />
-    </Suspense>
   );
 }
