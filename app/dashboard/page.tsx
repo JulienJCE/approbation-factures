@@ -5,7 +5,6 @@ export const dynamic = 'force-dynamic';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/useAuth';
 
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
