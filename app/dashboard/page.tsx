@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
-  const [documents, setDocuments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -24,20 +23,7 @@ export default function Dashboard() {
       return;
     }
     setUser(JSON.parse(storedUser));
-    
-    const fetchDocuments = async () => {
-      try {
-        const res = await fetch('/api/documents');
-        const data = await res.json();
-        setDocuments(data);
-      } catch (error) {
-        console.error('Erreur fetch documents:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchDocuments();
+    setLoading(false);
   }, [router]);
 
   if (loading) return <div style={{ padding: '2rem' }}>Chargement...</div>;
